@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+
+const {id, title, description, image, link} = Astro.props;
+---
+
+<div class="project" id={id}>
+    <img src={image} alt="Project card image" />
+    <div class="description">
+        <h3>{title}</h3>
+        <p>{description}</p>
+    </div>
+</div>
+
+<style>
+    .project {
+		max-width: 350px;
+		height: 225px;
+		background-color: var(--dark);
+		filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+	}
+
+	.project:hover {
+		cursor: pointer;
+		filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.7));
+		transition: all 0.25s ease-in-out;
+
+		.description {
+			color: var(--dark);
+			background-color: var(--white);
+			transition: all 0.25s ease-in-out;
+		}
+	}
+
+	.project img {
+		max-height: 100px;
+		object-fit: cover;
+	}
+
+    .project h3 {
+        height: 25%;
+    }
+
+	.project .description {
+        height: 100%;
+		padding: 5px 25px;
+		gap: 12px;
+		text-align: center;
+	}
+</style>

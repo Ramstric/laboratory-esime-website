@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Laboratorio de Electromagnetismo Aplicado</title>
+	</head>
+	<body>
+		<nav>
+			<img src="https://placehold.co/190x80" alt="Logo" id="logo" />
+			<div class="pages">
+				<p>Laboratorios</p>
+				<p>Programas</p>
+				<div class="admision">
+					<p>Admisión</p>
+				</div>
+				<p>Alumnado</p>
+				<p>Contacto</p>
+			</div>
+		</nav>
+		<slot />
+		<footer>
+			<p>Laboratorio de Electromagnetismo Aplicado</p>
+			<p>Copyright © 2025 Laboratorio de Electromagnetismo Aplicado</p>
+		</footer>
+	</body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+  }
+
+  nav {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+	height: fit-content;
+	
+	padding: 5px 100px;
+
+	color: var(--primary);
+	background-color: var(--black);
+  }
+
+  #logo {
+	width: 190px;
+	height: 80px;
+  }
+
+  .pages {
+	width: fit-content;
+	flex-direction: row;
+	gap: 80px;
+  }
+
+  .admision {
+	width: fit-content;
+	padding: 10px;
+	color: var(--black);
+	background-color: var(--primary);
+	border-radius: 15px;
+  }
+
+  footer {
+	display: flex;
+	flex-direction: column;
+	padding: 20px 100px;
+	color: var(--gray);
+	background-color: var(--black);
+  }
+</style>

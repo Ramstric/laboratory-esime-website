@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+
+const {id, titleHTML, titleColor, description, image, link} = Astro.props;
+
+import Button from "./Button.astro";
+---
+
+<div class="laboratory" id={id}>
+    <img src={image} alt="Laboratory card image" />
+    <div class="description">
+        <h3 set:html={titleHTML}></h3>
+        <p>{description}</p>
+        <Button 
+            id="lab-button"
+            innerHtml="Conoce más"
+            labelColor="var(--white)"
+            bgColor={titleColor}
+            link={link}
+            type="invert"
+            ></Button>
+    </div>
+</div>
+
+<style define:vars={{ titleColor: titleColor }}>
+    .laboratory {
+		max-width: 475px;
+		height: 375px;
+        text-align: left;
+		background-color: var(--dark);
+		filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+	}
+
+	.laboratory img {
+		height: 180px;
+		object-fit: cover;
+	}
+
+	.laboratory .description {
+        height: 100%;
+		gap: 12px;
+		padding: 10px 20px;
+		color: var(--primary);
+	}
+
+    .laboratory h3 {
+        color: var(--titleColor);
+    }
+
+    .laboratory p {
+        color: var(--white);
+    }
+</style>

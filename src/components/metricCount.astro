@@ -1,0 +1,17 @@
+---
+import "../styles/global.css";
+
+const { id, title } = Astro.props;
+---
+
+<div class="metric" id={id}>
+    <h2>0</h2>
+    <h3>{title}</h3>
+</div>
+
+<style>
+    .metric {
+        width: fit-content;
+		text-align: center;
+	}
+</style>

@@ -1,0 +1,192 @@
+---
+import '../styles/global.css';
+
+import Layout from '../layouts/Layout.astro';
+import LaboratoryCard from '../components/laboratoryCard.astro';
+import MetricCount from '../components/metricCount.astro';
+import ProjectCard from '../components/projectCard.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout>
+	<div id="hero-section">
+		<div class="description">
+			<h1>Laboratorio de Electromagnetismo Aplicado</h1>
+			<h2>Departamento de Electrónica, ESIME Unidad Zacatenco</h2>
+			<h3>Un centro de excelencia dedicado a la investigación y formación de vanguardia</h3>
+		</div>
+
+		<img src="https://placehold.co/650x650" alt="Hero Image" id="hero-image" />
+	</div>
+	<div id="subhero-section">
+		<div class="images">
+			<img src="https://placehold.co/475x250" alt="Subhero Image 1" />
+			<img src="https://placehold.co/475x250" alt="Subhero Image 2" />
+			<img src="https://placehold.co/475x250" alt="Subhero Image 3" />
+		</div>
+		<div class="description">
+			<h3>Pertenecemos a los programas académicos de posdoctorado del <b>Instituto Politécnico Nacional</b> que se imparten en la <b>Escuela Superior de Ingeniería Mecánica y Eléctrica Unidad Zacatenco</b> y tenemos el objetivo de formar egresados de nivel posgrado capaces de entender las problemáticas y aspectos en el área de ingeniería para poder  vincularse con el sector productivo, social y educativo</h3>
+		</div>
+		<div class="metrics">
+			<h2><b>Y estamos orgullosos de contar con...</b></h2>
+			<div class="container">
+				<MetricCount id="metric1" title="egresados de maestria"/>
+				<MetricCount id="metric2" title="egresados de doctorado"/>
+				<MetricCount id="metric3" title="publicaciones en revistas"/>
+				<MetricCount id="metric4" title="proyectos en trabajo"/>
+			</div>
+		</div>
+		<Button 
+			id="subhero-button"
+			innerHtml="Conoce más sobre nosotros"
+			labelColor="var(--white)"
+			bgColor="var(--crimson)"
+			link="#labs-section"
+			type="invert"
+			></Button>
+	</div>
+	<div id="labs-section">
+		<h2><b>Conoce un poco sobre nuestros laboratorios</b></h2>
+		<div class="laboratories">
+
+			<LaboratoryCard
+				id="lab1"
+				titleHTML="Laboratorio de <b>Bioelectromagnetismo</b>"
+				titleColor="var(--crimson)"
+				description="Un laboratorio enfocado en la investigación de sistemas inteligentes y su aplicación en la industria"
+				image="https://placehold.co/475x180"
+				link="#"
+			/>
+
+			<LaboratoryCard
+				id="lab2"
+				titleHTML="Laboratorio de <b>Evaluación No Destructiva Electromagnética</b>"
+				titleColor="var(--blue)"
+				description="Aplicación de técnicas electromagnéticas avanzadas para la detección de defectos y la caracterización de materiales"
+				image="https://placehold.co/475x180"
+				link="#"
+			/>
+
+		</div>
+	</div>
+	<div id="recent-section">
+		<h2><b>Nuestros últimos proyectos</b></h2>
+		<div class="projects">
+			<ProjectCard
+				id="project1"
+				title="Titulo del proyecto"
+				description="Descripción breve del proyecto y su objetivo en particular"
+				image="https://placehold.co/350x100"
+				link="#"
+			/>
+
+			<ProjectCard
+				id="project1"
+				title="Titulo del proyecto"
+				description="Descripción breve del proyecto y su objetivo en particular"
+				image="https://placehold.co/350x100"
+				link="#"
+			/>
+
+			<ProjectCard
+				id="project1"
+				title="Titulo del proyecto"
+				description="Descripción breve del proyecto y su objetivo en particular"
+				image="https://placehold.co/350x100"
+				link="#"
+			/>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	/*#region Hero*/
+	#hero-section {
+		position: sticky;
+		top: 0;
+		flex-direction: row;
+		max-height: 760px;
+		z-index: -1;
+		background-color: var(--crimson);
+	}
+
+	#hero-section .description {
+		width: 50%;
+		gap: 30px;
+		padding: 0 20px;
+		text-align: center;
+		color: var(--white);
+	}
+
+	#hero-image {
+		width: 50%;
+		object-fit: cover;
+	}
+	/*#endregion Hero*/
+
+	/*#region Subhero*/
+	#subhero-section {
+		max-height: 980px;
+		gap: 80px;
+		padding-bottom: 75px;
+		background-color: var(--white);
+		filter: drop-shadow(0px -4px 50px rgba(0, 0, 0, 0.5));
+	}
+
+	#subhero-section .images {
+		overflow: hidden;
+		flex-direction: row;
+		max-height: 230px;
+	}
+
+	#subhero-section .description {
+		flex-direction: row;
+		gap: 50px;
+		text-align: center;
+		padding: 0 75px;
+	}
+
+	#subhero-section .metrics {
+		gap: 25px;
+		padding: 0 25px;
+		text-align: center;
+	}
+
+	#subhero-section .container {
+		flex-direction: row;
+		gap: 75px;
+	}
+	/*#endregion Subhero*/
+
+	/*#region Labs*/
+	#labs-section {
+		max-height: 900px;
+		gap: 50px;
+		padding: 75px 50px;
+		z-index: 1;
+		background-color: var(--white);
+		text-align: center;
+	}
+
+	#labs-section .laboratories {
+		flex-direction: row;
+		gap: 200px;
+	}
+	/*#endregion Labs*/
+
+	/*#region Recent*/
+	#recent-section {
+		max-height: 750px;
+		gap: 75px;
+		padding: 50px 100px;
+		color: var(--white);
+		background-color: var(--dark);
+	}
+
+	#recent-section .projects {
+		flex-direction: row;
+		gap: 100px;
+	}
+	/*#endregion Recent*/
+</style>
+
