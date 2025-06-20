@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+
+import Layout from '../layouts/Layout.astro';
+
+// Import all projects from ../assets/projects
+const projectsList = await Astro.glob('../assets/projects/*.md');
+// Note: Using Astro.glob() is now the recommended way over import.meta.glob for content.
+// It returns an array directly, so Object.values is not needed.
+---
+
+<Layout>
+
+    {
+        projectsList.map((project: any) => {
+            const { frontmatter, Content } = project;
+
+            return (
+                <div class="project">
+                    <h2>{project.frontmatter.titulo}</h2>
+                    <p>{project.frontmatter.fecha}</p>
+                    <p>{project.frontmatter.autor}</p>
+                </div>
+                <div class="project-content">
+                    <Content />
+                </div>
+            );
+        })
+    }
+    
+
+</Layout>
+
+<style>
+    .project {
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid var(--ocean);
+        border-radius: 12px;
+        background-color: var(--dark);
+        color: var(--primary);
+
+    }
+
+    .project-content {
+        background-color: var(--primary);
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 900px;
+    }
+
+    .project-content :global(p) {
+        margin-bottom: 1em;
+    }
+    .project-content :global(h3) {
+        margin-top: 1.5em;
+        font-size: 1.25rem;
+    }
+</style>
+
