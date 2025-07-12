@@ -5,7 +5,7 @@
 
     box-sizing: border-box;
 
-    font-family: Manrope, serif;
+    font-family: Karla, serif;
     font-weight: 450;
 }
 
@@ -41,7 +41,7 @@ h3 {
 }
 
 p, a, li {
-    font-size: var(--p-desktop);
+    font-size: var(--p);
     font-weight: 350;
 }
 
@@ -62,6 +62,6 @@ b, strong {
 }
 
 button {
-    font-size: var(--p-desktop);
+    font-size: var(--p);
 
 }

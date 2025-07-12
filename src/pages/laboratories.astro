@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <div class="content">
+        <div class="description">
+            <h1>LABORATORIOS</h1>
+            <p>
+                En esta sección encontrarás información sobre los laboratorios de la ESIME, incluyendo sus proyectos, investigaciones y actividades.
+                Cada laboratorio tiene un enfoque único y contribuye al avance del conocimiento en diversas áreas de la ingeniería.
+            </p>
+
+        </div>
+        <div class="laboratories">
+            <div class="lab electronics">
+                <img src="https://placehold.co/80x80/191919/ffece7">
+            </div>
+            <div class="lab robotics">
+                <img src="https://placehold.co/80x80/191919/ffece7">
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .content {
+        flex-direction: row;
+        height: 81vh;
+    }
+
+    .description {
+        width: 40%;
+        height: 100%;
+
+        gap: 25px;
+
+        padding: 0 75px;
+
+        color: var(--white);
+
+        background-color: rgba(255, 0, 0, 0.108);
+    }
+
+    
+
+    .laboratories {
+        user-select: none;
+        flex-direction: row;
+
+        width: 60%;
+        height: 100%;
+        
+    }
+
+    .lab {
+        width: 50%;
+        height: 100%;
+
+        padding: 0 50px;
+
+        border-left: 1px solid var(--primary);
+        border-right: 1px solid var(--primary);
+
+        overflow: hidden;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    .lab img {
+        width: 250px;
+    }
+
+    .lab:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+    }
+
+    .laboratories:has(.active) {
+        .lab.active {
+            width: 100%;
+            background-color: rgba(13, 0, 255, 0.108);
+        }
+        .lab:not(.active) {
+            width: 0;
+            padding: 0;
+            background-color: rgba(251, 255, 0, 0.108);
+        }
+    }
+
+</style>
+
+<script>
+    document.querySelectorAll('.lab').forEach(lab => {
+        lab.addEventListener('click', () => {
+            lab.classList.toggle('active');
+        });
+    });
+</script>

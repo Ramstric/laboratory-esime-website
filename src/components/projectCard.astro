@@ -16,19 +16,20 @@ const {id, title, description, image, link} = Astro.props;
     .project {
 		max-width: 350px;
 		height: 225px;
-		background-color: var(--dark);
-		filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+		background-color: var(--background);
+		filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.75));
+		transition: all 0.25s ease-in-out;
+		& .description {
+			transition: all 0.25s ease-in-out;	
+		}
 	}
 
 	.project:hover {
 		cursor: pointer;
-		filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.7));
-		transition: all 0.25s ease-in-out;
-
+		
 		.description {
 			color: var(--dark);
 			background-color: var(--white);
-			transition: all 0.25s ease-in-out;
 		}
 	}
 

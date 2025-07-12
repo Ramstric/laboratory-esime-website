@@ -1,0 +1,103 @@
+---
+// src/components/InteractiveSelection.astro
+
+// Define the props the component accepts.
+// It expects an array of objects, each with an image and a title.
+interface Item {
+  img: string;
+  title: string;
+}
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="selection-container">
+  {
+    items.map((item) => (
+      <div
+        class="panel"
+        style={`background-image: url(${item.img});`}
+      >
+        <h3>{item.title}</h3>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .selection-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 400px; /* Or any height you prefer */
+    overflow: hidden;
+    border: 1px solid #4a4a4a;
+    border-radius: 8px;
+  }
+
+  .panel {
+    /* ------ Initial State ------ */
+    /* flex: <flex-grow> <flex-shrink> <flex-basis> */
+    /* flex: 1 means all panels share the space equally. */
+    flex: 1; 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+
+    position: relative; /* Needed for positioning the h3 */
+    cursor: pointer;
+
+    /* ------ The Magic: Smooth Transition ------ */
+    /* We transition the 'flex' property over 0.7 seconds. */
+    transition: flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11);
+  }
+
+  /* --- The Interaction Logic --- */
+
+  /* 
+    STEP 1: When the user hovers over ANYWHERE in the container,
+    we tell ALL panels to shrink. We give them a tiny flex-grow
+    value so they don't disappear instantly, creating a nicer effect.
+    You could set this to `flex: 0;` to make them fully disappear.
+  */
+  .selection-container:hover .panel {
+    flex: 0.1;
+  }
+  
+  /*
+    STEP 2: We then create a MORE SPECIFIC rule.
+    When the container is hovered, the SPECIFIC panel that is ALSO
+    being hovered should grow and take up the majority of the space.
+    This rule overrides the one above for the targeted panel.
+  */
+  .selection-container:hover .panel:hover {
+    flex: 5; /* This number can be adjusted, but it should be much larger */
+  }
+
+  /* --- Styling for the text inside --- */
+  .panel h3 {
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    /* Initially hide the text on the shrunken panels */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Show the text only on the active, expanded panel */
+  .selection-container:hover .panel:hover h3 {
+    opacity: 1;
+    transition-delay: 0.3s; /* Wait for the panel to expand a bit */
+  }
+</style>

@@ -7,13 +7,11 @@ import MetricCount from '../components/metricCount.astro';
 import ProjectCard from '../components/projectCard.astro';
 import Button from '../components/Button.astro';
 ---
-
 <Layout>
 	<div id="hero-section">
 		<div class="description">
-			<h1>Laboratorio de Electromagnetismo Aplicado</h1>
-			<h2>Departamento de Electrónica, ESIME Unidad Zacatenco</h2>
-			<h3>Un centro de excelencia dedicado a la investigación y formación de vanguardia</h3>
+			<h1>Laboratorio de<br><i>Electromagnetismo</i><br>Aplicado</h1>
+			<h2>Departamento de Electrónica<br>ESIME Unidad Zacatenco</h2>
 		</div>
 
 		<img src="https://placehold.co/650x650" alt="Hero Image" id="hero-image" />
@@ -105,21 +103,25 @@ import Button from '../components/Button.astro';
 		position: sticky;
 		top: 0;
 		flex-direction: row;
-		max-height: 760px;
+		height: 95vh;
 		z-index: -1;
-		background-color: var(--crimson);
+		background-color: var(--background);
 	}
 
 	#hero-section .description {
-		width: 50%;
+		width: 60%;
 		gap: 30px;
 		padding: 0 20px;
-		text-align: center;
+		text-align: start;
 		color: var(--white);
+
+		& h2 {
+			text-align: end;
+		}
 	}
 
 	#hero-image {
-		width: 50%;
+		width: 40%;
 		object-fit: cover;
 	}
 	/*#endregion Hero*/
@@ -180,7 +182,7 @@ import Button from '../components/Button.astro';
 		gap: 75px;
 		padding: 50px 100px;
 		color: var(--white);
-		background-color: var(--dark);
+		background-color: #202020;
 	}
 
 	#recent-section .projects {

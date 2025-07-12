@@ -9,15 +9,15 @@ const baseSite = "laboratory-esime-website";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/laboratory-esime-website/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Laboratorio de Electromagnetismo Aplicado</title>
 	</head>
 	<body>
 		<nav>
-			<img src="https://placehold.co/190x80" alt="Logo" id="logo" />
+			<img src="https://placehold.co/80x70" alt="Logo" id="logo" />
 			<div class="pages">
-				<p>Laboratorios</p>
+				<a href="/laboratory-esime-website/laboratories">Laboratorios</a>
 				<a href="/laboratory-esime-website/projects">Proyectos</a>
 				<p>Programas</p>
 				<div class="admision">
@@ -56,12 +56,12 @@ const baseSite = "laboratory-esime-website";
 	padding: 5px 100px;
 
 	color: var(--primary);
-	background-color: var(--black);
+	background-color: var(--background);
   }
 
   #logo {
-	width: 190px;
-	height: 80px;
+	width: 80px;
+	height: 70px;
   }
 
   .pages {
@@ -72,10 +72,10 @@ const baseSite = "laboratory-esime-website";
 
   .admision {
 	width: fit-content;
-	padding: 10px;
+	padding: 5px 15px;
 	color: var(--black);
 	background-color: var(--primary);
-	border-radius: 15px;
+	border-radius: 18px;
   }
 
   footer {

@@ -1,0 +1,101 @@
+---
+import "../styles/global.css";
+
+const {id, title, author, date, description, image, tags, link} = Astro.props;
+---
+
+<div class="projectEntry" id={id}>
+	<div class="content">
+		<div class="title">
+			<p>{date}</p>
+			<h2>{title}</h2>
+			<p>{author}</p>
+		</div>
+		<p>{description}</p>
+		<div class="tags">
+			{tags.map((tag : string[]) => (
+				<span class="tag">{tag}</span>
+			))}
+		</div>
+
+	</div>
+	<div style="min-width: 700px; height: 250px; flex-direction: row;">
+		<span class="project-select"></span>
+		<img src={image} alt="Project entry image" class=`project-image ${id}` />
+	</div>
+</div>
+
+<style>
+	.projectEntry {
+		flex-direction: row;
+		width: 100%;
+		height: 300px;
+
+		gap: 50px;
+		padding: 25px;
+
+		border-radius: 12px;
+
+		background-color: var(--white);
+	}
+
+	.projectEntry:hover {
+		cursor: pointer;
+
+		& img {
+			width: 500px;
+			filter: drop-shadow(0 0 20px rgb(0, 0, 0));
+		}
+	}
+
+	.content {
+		height: 100%;
+
+		place-content: flex-start space-between;
+	}
+
+	.title {
+		& h2 {
+			font-weight: 600;
+		}
+		& p {
+			color: var(--light-gray);
+		}
+
+	}
+
+	.tags {
+		place-content: flex-start;
+		flex-direction: row;
+
+		gap: 15px;
+	}
+
+	.tag {
+		width: fit-content;
+
+		padding: 2px 15px;
+		border-radius: 18px;
+
+		color: var(--white);
+		background-color: var(--background);
+	}
+
+	.project-image {
+		width: 700px;
+		height: 250px;
+
+		object-fit: cover;
+
+		background-color: var(--background);
+		transition: all 0.15s ease-in-out;
+	}
+
+	.project-select {
+		height: 100%;
+		background-color: rgb(255, 63, 63);
+
+		transition: all 0.15s ease-in-out;
+	}
+
+</style>

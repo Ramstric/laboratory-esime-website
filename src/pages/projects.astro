@@ -2,6 +2,7 @@
 import '../styles/global.css';
 
 import Layout from '../layouts/Layout.astro';
+import ProjectsEntry from '../components/projectsEntry.astro';
 
 // Import all projects from ../assets/projects
 const projectsList = await Astro.glob('../assets/projects/*.md');
@@ -10,28 +11,44 @@ const projectsList = await Astro.glob('../assets/projects/*.md');
 ---
 
 <Layout>
-
-    {
-        projectsList.map((project: any) => {
-            const { frontmatter, Content } = project;
+    <div class="content">
+        <h1>PROYECTOS</h1>
+        <div class="entries">
+        { projectsList.map((project: any) => {
+            const { frontmatter } = project;
 
             return (
-                <div class="project">
-                    <h2>{project.frontmatter.titulo}</h2>
-                    <p>{project.frontmatter.fecha}</p>
-                    <p>{project.frontmatter.autor}</p>
-                </div>
-                <div class="project-content">
-                    <Content />
-                </div>
+                <ProjectsEntry
+                    id={project.frontmatter.id}
+                    title={project.frontmatter.titulo}
+                    author={project.frontmatter.autor}
+                    date={project.frontmatter.fecha}
+                    description={project.frontmatter.descripcion}
+                    image={project.frontmatter.img}
+                    tags={project.frontmatter.tags}
+                    link={`/projects/${project.frontmatter.id}`}
+                />
             );
-        })
-    }
-    
-
+        }) }
+        </div>
+    </div>
 </Layout>
 
 <style>
+    .content {
+        padding: 50px;
+        & h1 {
+            color: var(--white);
+            font-weight: 800;
+        }
+    }
+
+    .entries {
+        gap: 50px;
+        padding: 25px 75px;
+    }
+
+    /*
     .project {
         max-width: 600px;
         padding: 20px;
@@ -55,6 +72,6 @@ const projectsList = await Astro.glob('../assets/projects/*.md');
     .project-content :global(h3) {
         margin-top: 1.5em;
         font-size: 1.25rem;
-    }
+    }*/
 </style>
 

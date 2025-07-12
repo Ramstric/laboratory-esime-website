@@ -8,25 +8,35 @@
 }
 
 @font-face {
+    font-family: "Karla";
+    font-weight: 200 800;
+    src: url("/laboratory-esime-website/fonts/Karla-VariableFont_wght.ttf")format("truetype");
+}
+
+@font-face {
     font-family: "FiraCode";
     font-weight: 300 700;
     src: url("/laboratory-esime-website/fonts/FiraCode-VariableFont_wght.ttf")format("truetype");
 }
 
+
+
 :root {
     /* --------------- Desktop Font Options --------------- */
-    --h1-desktop: 2.15em;
-    --h2-desktop: 1.75em;
+    --h1-desktop: 4.25em;
+    --h2-desktop: 2em;
     --h3-desktop: 1.15em;
 
-    --p-desktop: 0.95em;
+    --p: 1em;
 
     --footer-desktop: 10px;
 
     /* ---------------------- Colors ---------------------- */
     --black: #0b0b0b;
     --dark: #101010;
+    --dark-gray: #191919;
     --gray: #3c3c3c;
+    --light-gray: #848282;
     --white: #ffece7;
 
     --red: #eb4964;
@@ -43,7 +53,7 @@
     --ocean: #4244cb;
     --purple: #463280;
 
-    --background: var(--dark);
+    --background: var(--dark-gray);
     --primary: var(--white);
     --secondary: var(--gray);
 }
