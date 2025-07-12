@@ -5,18 +5,16 @@ import Layout from '../layouts/Layout.astro';
 import ProjectsEntry from '../components/projectsEntry.astro';
 
 // Import all projects from ../assets/projects
-const projectsList = await Astro.glob('../assets/projects/*.md');
-// Note: Using Astro.glob() is now the recommended way over import.meta.glob for content.
-// It returns an array directly, so Object.values is not needed.
+
+const projectsMarkdown = import.meta.glob('../assets/projects/*.md', { eager: true });
+const projectsList = Object.values(projectsMarkdown)
 ---
 
 <Layout>
     <div class="content">
         <h1>PROYECTOS</h1>
         <div class="entries">
-        { projectsList.map((project: any) => {
-            const { frontmatter, Content } = project;
-
+        { projectsList.map((project) => {
             return (
                 <ProjectsEntry
                     id={project.frontmatter.id}
