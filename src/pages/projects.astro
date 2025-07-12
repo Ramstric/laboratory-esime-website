@@ -15,7 +15,7 @@ const projectsList = await Astro.glob('../assets/projects/*.md');
         <h1>PROYECTOS</h1>
         <div class="entries">
         { projectsList.map((project: any) => {
-            const { frontmatter } = project;
+            const { frontmatter, Content } = project;
 
             return (
                 <ProjectsEntry
