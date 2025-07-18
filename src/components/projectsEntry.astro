@@ -5,7 +5,7 @@ const baseSite = "laboratory-esime-website";
 const {id, title, author, date, description, image, tags, link} = Astro.props;
 ---
 
-<a class="projectEntry" id={id} href=`project/${link}`>
+<a class="projectEntry" id={id} href=`/${baseSite}/project/${link}`>
 	<div class="content">
 		<div class="title">
 			<p>{date}</p>
