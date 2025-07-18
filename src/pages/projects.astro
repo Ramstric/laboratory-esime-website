@@ -5,26 +5,29 @@ import Layout from '../layouts/Layout.astro';
 import ProjectsEntry from '../components/projectsEntry.astro';
 
 // Import all projects from ../assets/projects
-
-const projectsMarkdown = import.meta.glob('../assets/projects/*.md', { eager: true });
-const projectsList = Object.values(projectsMarkdown)
+import { getCollection } from 'astro:content';
+//const projectsMarkdown = import.meta.glob('../content/projects/*.md', { eager: true });
+//const projectsList = Object.values(projectsMarkdown) as any[];
+const projects = await getCollection('projects');
+// Do the projectsList but without sorting, for now
+const projectsList = projects;
 ---
 
-<Layout>
+<Layout pageTitle="projects">
     <div class="content">
         <h1>PROYECTOS</h1>
         <div class="entries">
         { projectsList.map((project) => {
             return (
                 <ProjectsEntry
-                    id={project.frontmatter.id}
-                    title={project.frontmatter.titulo}
-                    author={project.frontmatter.autor}
-                    date={project.frontmatter.fecha}
-                    description={project.frontmatter.descripcion}
-                    image={project.frontmatter.img}
-                    tags={project.frontmatter.tags}
-                    link={`/projects/${project.frontmatter.id}`}
+                    id={project.data.id}
+                    title={project.data.titulo}
+                    author={project.data.autor}
+                    date={project.data.fecha}
+                    description={project.data.descripcion}
+                    image={project.data.thumbnail}
+                    tags={project.data.tags}
+                    link={project.slug}
                 />
             );
         }) }
@@ -42,7 +45,7 @@ const projectsList = Object.values(projectsMarkdown)
     }
 
     .entries {
-        gap: 50px;
+        gap: 10px;
         padding: 25px 75px;
     }
 

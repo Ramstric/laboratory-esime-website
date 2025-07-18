@@ -1,0 +1,139 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+// Get the project data from props
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+// Extract frontmatter data
+const { titulo, descripcion, fecha, autor, tags, img } = project.data;
+---
+
+<Layout pageTitle={titulo}>
+    <article>
+      <div class="content">
+        <header>
+          <h1>{titulo}</h1>
+          <div class="meta">
+            <p>{fecha} by {autor}</p>
+          </div>
+          <div class="tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </header>
+        <div class="markdown">
+          <Content />
+        </div>
+      </div>
+      <div class="image">
+        <img src={img} alt={titulo} loading="lazy" />
+        <p>fig.</p>
+      </div>
+    </article>
+</Layout>
+
+<style>
+  article {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    place-items: center;
+    padding: 25px 0;
+
+    color: var(--white);
+  }
+
+  .content {
+    width: 65%;
+    padding: 0 100px;
+    gap: 30px;
+
+    & header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      & h1 {
+        font-size: 3.25em;
+        font-weight: 800;
+      }
+    }
+
+    & .meta {
+      flex-direction: row;
+      justify-content: space-between;
+
+      & span {
+        width: fit-content;
+      }
+    }
+
+    & .tags {
+      flex-direction: row;
+      place-content: flex-start;
+      gap: 25px;
+      padding: 15px 0;
+
+      & .tag {
+        width: fit-content;
+
+        font-size: var(--p);
+        font-weight: 300;
+
+        padding: 0 15px;
+        border-radius: 18px;
+
+        color: var(--background);
+        background-color: var(--white);
+      }
+    }
+  }
+
+  .image {
+    width: 35%;
+    gap: 10px;
+
+    & p {
+      width: fit-content;
+    }
+  }
+
+  img {
+    width: fit-content;
+  }
+
+  /* Markdown styles */
+  .markdown {
+    font-family: Inter;
+
+    h1 {
+      margin-bottom: 15px;
+    }
+
+    h2, h3, h4, h5, h6 {
+      margin: 5px 0;
+    }
+
+    p, ul, ol {
+      margin: 2px 0;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+  }
+</style>

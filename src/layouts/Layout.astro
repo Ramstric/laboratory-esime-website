@@ -2,87 +2,114 @@
 import "../styles/global.css";
 
 const baseSite = "laboratory-esime-website";
+const { pageTitle } = Astro.props;
+// If pageTitle == "home" then the main element must have flex-direction: column
+const isHomePage = pageTitle === "home";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/laboratory-esime-website/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Laboratorio de Electromagnetismo Aplicado</title>
-	</head>
-	<body>
-		<nav>
-			<img src="https://placehold.co/80x70" alt="Logo" id="logo" />
-			<div class="pages">
-				<a href="/laboratory-esime-website/laboratories">Laboratorios</a>
-				<a href="/laboratory-esime-website/projects">Proyectos</a>
-				<p>Programas</p>
-				<div class="admision">
-					<p>Admisión</p>
-				</div>
-				<p>Alumnado</p>
-				<p>Contacto</p>
-			</div>
-		</nav>
-		<slot />
-		<footer>
-			<p>Laboratorio de Electromagnetismo Aplicado</p>
-			<p>Copyright © 2025 Laboratorio de Electromagnetismo Aplicado</p>
-		</footer>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/laboratory-esime-website/favicon.svg"
+        />
+        <meta name="generator" content={Astro.generator} />
+        <title>Laboratorio de Electromagnetismo Aplicado</title>
+    </head>
+    <body>
+        <nav>
+            <a href={`/${baseSite}`}>
+                <img src="https://placehold.co/80x70" alt="Logo" id="logo" />
+            </a>
+            <div class="pages">
+                <a class={pageTitle == 'labs' ? "active" : ""} href=`/${baseSite}/laboratories`>Laboratorios</a>
+                <a class={pageTitle == 'projects' ? "active" : ""} href=`/${baseSite}/projects`>Proyectos</a>
+                <p>Programas</p>
+                <p>Admisión</p>
+                <p>Alumnado</p>
+                <p>Contacto</p>
+            </div>
+        </nav>
+
+        <main class={isHomePage ? "home" : ""}>
+            <slot />
+        </main>
+
+        <footer>
+            <p>Laboratorio de Electromagnetismo Aplicado</p>
+            <p>Copyright © 2025 Laboratorio de Electromagnetismo Aplicado</p>
+        </footer>
+    </body>
 </html>
 
 <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    body {
+        display: flex;
+        flex-direction: column;
+        place-items: center;
 
-    margin: 0;
-  }
+        margin: 0;
+        min-height: 100dvh;
+    }
 
-  nav {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
 
-	height: fit-content;
-	
-	padding: 5px 100px;
+        flex-basis: 10%;
 
-	color: var(--primary);
-	background-color: var(--background);
-  }
+        padding: 5px 100px;
 
-  #logo {
-	width: 80px;
-	height: 70px;
-  }
+        color: var(--primary);
+        background-color: var(--background);
+    }
 
-  .pages {
-	width: fit-content;
-	flex-direction: row;
-	gap: 80px;
-  }
+    #logo {
+        width: 80px;
+        height: 70px;
+    }
 
-  .admision {
-	width: fit-content;
-	padding: 5px 15px;
-	color: var(--black);
-	background-color: var(--primary);
-	border-radius: 18px;
-  }
+    .pages {
+        width: fit-content;
+        flex-direction: row;
+        gap: 80px;
+    }
 
-  footer {
-	display: flex;
-	flex-direction: column;
-	padding: 20px 100px;
-	color: var(--gray);
-	background-color: var(--black);
-  }
+    .active {
+        padding: 2px 12px;
+        color: var(--black);
+        background-color: var(--primary);
+        border-radius: 18px;
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        place-items: center;
+		align-items: stretch;
+    }
+
+    .home {
+        flex-direction: column;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 10%;
+		
+        padding: 20px 100px;
+
+		font-size: 14px;
+
+        color: var(--gray);
+        background-color: var(--black);
+    }
 </style>

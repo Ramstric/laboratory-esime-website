@@ -3,7 +3,8 @@ titulo: 'Renderizado del Lado del Servidor (SSR)'
 fecha: '22 de Agosto de 2025'
 autor: 'Ana Torres'
 descripcion: 'Descubre cómo el SSR mejora el rendimiento y el SEO de las aplicaciones web modernas.'
-img: 'https://placehold.co/700x250/334155/e2e8f0'
+img: 'https://placehold.co/350x650/131313/ffece7'
+thumbnail: 'https://placehold.co/700x250/166534/ffece7'
 tags: ['webdev', 'ssr', 'rendimiento', 'seo']
 id: '2'
 

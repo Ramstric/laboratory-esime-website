@@ -1,32 +1,33 @@
 ---
 import "../styles/global.css";
+const baseSite = "laboratory-esime-website";
 
 const {id, title, author, date, description, image, tags, link} = Astro.props;
 ---
 
-<div class="projectEntry" id={id}>
+<a class="projectEntry" id={id} href=`project/${link}`>
 	<div class="content">
 		<div class="title">
 			<p>{date}</p>
 			<h2>{title}</h2>
 			<p>{author}</p>
 		</div>
-		<p>{description}</p>
 		<div class="tags">
 			{tags.map((tag : string[]) => (
 				<span class="tag">{tag}</span>
 			))}
 		</div>
-
 	</div>
-	<div style="min-width: 700px; height: 250px; flex-direction: row;">
+
+	<div class="image">
 		<span class="project-select"></span>
 		<img src={image} alt="Project entry image" class=`project-image ${id}` />
 	</div>
-</div>
+</a>
 
 <style>
 	.projectEntry {
+		display: flex;
 		flex-direction: row;
 		width: 100%;
 		height: 300px;
@@ -36,26 +37,18 @@ const {id, title, author, date, description, image, tags, link} = Astro.props;
 
 		border-radius: 12px;
 
-		background-color: var(--white);
-	}
-
-	.projectEntry:hover {
-		cursor: pointer;
-
-		& img {
-			width: 500px;
-			filter: drop-shadow(0 0 20px rgb(0, 0, 0));
-		}
+		/*background-color: var(--white);*/
 	}
 
 	.content {
 		height: 100%;
-
-		place-content: flex-start space-between;
+		gap: 25px;
+		text-align: right;
 	}
 
 	.title {
 		& h2 {
+			color: var(--white);
 			font-weight: 600;
 		}
 		& p {
@@ -65,7 +58,7 @@ const {id, title, author, date, description, image, tags, link} = Astro.props;
 	}
 
 	.tags {
-		place-content: flex-start;
+		place-content: flex-end;
 		flex-direction: row;
 
 		gap: 15px;
@@ -77,8 +70,13 @@ const {id, title, author, date, description, image, tags, link} = Astro.props;
 		padding: 2px 15px;
 		border-radius: 18px;
 
-		color: var(--white);
-		background-color: var(--background);
+		background-color: var(--white);
+	}
+
+	.image {
+		flex-direction: row;
+		min-width: 700px;
+		height: 250px; 
 	}
 
 	.project-image {
@@ -93,9 +91,18 @@ const {id, title, author, date, description, image, tags, link} = Astro.props;
 
 	.project-select {
 		height: 100%;
-		background-color: rgb(255, 63, 63);
+		background-color: var(--white);
 
 		transition: all 0.15s ease-in-out;
+	}
+
+	.projectEntry:hover {
+		cursor: pointer;
+
+		& img {
+			width: 500px;
+			filter: drop-shadow(0 0 20px rgb(0, 0, 0));
+		}
 	}
 
 </style>

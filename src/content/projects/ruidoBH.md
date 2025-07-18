@@ -3,10 +3,10 @@ titulo: 'Prototipo Ruido BH'
 fecha: '10 de Julio de 2025'
 autor: 'Ramon Hernandez'
 descripcion: 'Explora nuestros proyectos más recientes y descubre cómo aplicamos el electromagnetismo en la investigación.'
-img: 'https://placehold.co/700x250/191919/ffece7'
+img: 'https://placehold.co/350x650/131313/ffece7'
+thumbnail: 'https://placehold.co/700x250/166534/dcfce7'
 tags: ['experimento', 'idea']
 id: '1'
-
 ---
 
 ## ¿Qué es el fenomeno EM?

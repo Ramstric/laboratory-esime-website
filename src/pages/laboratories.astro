@@ -4,96 +4,163 @@ import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout>
-    <div class="content">
-        <div class="description">
+<Layout pageTitle="labs">
+    <div class="content-wrapper">
+        <div class="description introduction">
             <h1>LABORATORIOS</h1>
             <p>
                 En esta sección encontrarás información sobre los laboratorios de la ESIME, incluyendo sus proyectos, investigaciones y actividades.
+                <br><br>
                 Cada laboratorio tiene un enfoque único y contribuye al avance del conocimiento en diversas áreas de la ingeniería.
             </p>
-
+            <span>Haz click en alguna opción</span>
         </div>
+        <div class="description electronic">
+            <h1><span>LABORATORIO DE</span><br>ELECTROMAGNETISMO APLICADO</h1>
+            <p>
+                Este laboratorio se centra en la investigación y desarrollo de aplicaciones electromagnéticas, incluyendo proyectos innovadores en el campo de la ingeniería eléctrica.
+                Aquí se realizan experimentos y se desarrollan prototipos que aplican principios electromagnéticos a problemas reales.
+            </p>
+        </div>
+        <div class="description robotic">
+            <h1><span>LABORATORIO DE</span><br>ROBOTICA</h1>
+            <p>
+                El laboratorio de robótica se dedica al diseño, construcción y programación de robots para diversas aplicaciones.
+                Los proyectos incluyen desde robots móviles hasta sistemas automatizados que mejoran la eficiencia en diferentes industrias.
+            </p>
+        </div>
+
         <div class="laboratories">
-            <div class="lab electronics">
-                <img src="https://placehold.co/80x80/191919/ffece7">
+            <div class="electronics">
+                <img src="https://placehold.co/850x600/101010/ffece7">
             </div>
-            <div class="lab robotics">
-                <img src="https://placehold.co/80x80/191919/ffece7">
+            <div class="robotics">
+                <img src="https://placehold.co/850x600/101010/ffece7">
             </div>
         </div>
     </div>
 </Layout>
 
 <style>
-    .content {
+    div {
+        height: 100%;
+    }
+
+    .content-wrapper {
         flex-direction: row;
-        height: 81vh;
+        height: auto;
     }
 
     .description {
-        width: 40%;
-        height: 100%;
+        width: 45%;
+        height: 99%;
 
-        gap: 25px;
-
-        padding: 0 75px;
+        padding: 0 50px;
+        gap: 50px;
 
         color: var(--white);
+        text-align: center;
 
-        background-color: rgba(255, 0, 0, 0.108);
+        transition: all 0.3s ease-in-out;
+        
+        & h1 {
+            font-weight: 800;
+        }
+
+        & span {
+            width: fit-content;
+            padding: 0 18px;
+            font-weight: 300;
+            color: var(--background);
+            background-color: var(--white);
+            border-radius: 20px;
+        }
+
     }
 
-    
+    .electronic, .robotic {
+        position: absolute;
+        visibility: hidden;
+        opacity: 0;
+        top: 0;
+        left: 0;
+
+        & h1 {
+            font-size: 3em;
+        }
+
+        & h1 span {
+            font-size: 0.75em;
+        }
+    }
 
     .laboratories {
         user-select: none;
         flex-direction: row;
 
-        width: 60%;
-        height: 100%;
+        width: 55%;
+
+        & div {
+            height: 100%;
+            width: 50%;
+
+            border-left: 1px solid var(--primary);
+            border-right: 1px solid var(--primary);
+
+            overflow: clip;
+
+            transition: all 0.3s ease-in-out;
+
+            & img {
+                width: 850px;
+            }
+        }
+
+        & div:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
         
     }
 
-    .lab {
-        width: 50%;
-        height: 100%;
-
-        padding: 0 50px;
-
-        border-left: 1px solid var(--primary);
-        border-right: 1px solid var(--primary);
-
-        overflow: hidden;
-
-        transition: all 0.3s ease-in-out;
-    }
-
-    .lab img {
-        width: 250px;
-    }
-
-    .lab:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        cursor: pointer;
-    }
-
     .laboratories:has(.active) {
-        .lab.active {
+        .active {
             width: 100%;
             background-color: rgba(13, 0, 255, 0.108);
         }
-        .lab:not(.active) {
+        :not(.active) {
             width: 0;
             padding: 0;
             background-color: rgba(251, 255, 0, 0.108);
         }
     }
 
+    .content-wrapper:has(.electronics.active) {
+        .description.introduction {
+            opacity: 0;
+        }
+        .description.electronic {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .content-wrapper:has(.robotics.active) {
+        .description.introduction {
+            opacity: 0;
+        }
+        .description.robotic {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
 </style>
 
 <script>
-    document.querySelectorAll('.lab').forEach(lab => {
+    const laboratories = document.querySelector('.laboratories') as HTMLElement;
+
+    laboratories.querySelectorAll('div').forEach(lab => {
         lab.addEventListener('click', () => {
             lab.classList.toggle('active');
         });

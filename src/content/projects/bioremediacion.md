@@ -2,11 +2,14 @@
 titulo: 'Bioremediación de Suelos Contaminados'
 fecha: '05 de Septiembre de 2025'
 autor: 'Carlos Vega'
+
 descripcion: 'Un vistazo a cómo los microorganismos pueden limpiar contaminantes y restaurar ecosistemas.'
-img: 'https://placehold.co/700x250/166534/dcfce7'
+
+img: 'https://placehold.co/350x650/131313/ffece7'
+thumbnail: 'https://placehold.co/700x250/166534/dcfce7'
+
 tags: ['biologia', 'ecologia', 'proyecto']
 id: '3'
-
 ---
 
 ## ¿En qué consiste la Bioremediación?
